@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  nuxt:
+    image: node:16
+    container_name: incident_nuxt
+    environment:
+      - HOST=0.0.0.0
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./front:/app
+    command: bash -c "cd /app && npm run dev"
