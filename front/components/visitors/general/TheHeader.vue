@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import IndicatorIcon from './IndicatorIcon.vue'
+import IndicatorIcon from '@/components/visitors/general/IndicatorIcon.vue'
 
 export default {
     name: 'TheHeader',

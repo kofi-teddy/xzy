@@ -1,17 +1,25 @@
 <template>
   <div>
+    <TheHeader />
+    <NotificationBar />
     <nuxt />
-    <notification-bar />
+    <TheFooter />
   </div>
 </template>
 
 <script>
 
 import NotificationBar from '@/components/visitors/general/NotificationBar'
+import TheHeader from '@/components/visitors/general/TheHeader'
+import TheFooter from '@/components/visitors/general/TheFooter'
 
 export default {
 
-  components: { NotificationBar }
+  components: { 
+    NotificationBar, 
+    TheHeader, 
+    TheFooter
+   }
 }
 </script>
 <style>
