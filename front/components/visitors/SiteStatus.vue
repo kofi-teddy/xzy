@@ -1,6 +1,6 @@
 <template>
   <div>
-      <indicator-icon 
+      <IndicatorIcon 
         class="rightfloat" 
         :status="site.status" 
         :text="false" 
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import IndicatorIcon from '@/components/visitors/general/InicatorIcon'
+import IndicatorIcon from '@/components/visitors/general/IndicatorIcon'
 
 export default {
   name: 'SiteStatus',
