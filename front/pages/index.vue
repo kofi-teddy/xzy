@@ -41,3 +41,30 @@ export default {
   }),
 }
 </script>
+
+<style scoped>
+.card.status { margin-bottom: 10px; }
+.cards {
+  max-width: 700px;
+  margin: -30px auto 20px;
+}
+.card {
+  border-radius: 10px;
+  background-color: white;
+  padding: 15px 20px;
+  box-shadow: 0 0 3px 1px rgba(163,163,163,0.30);
+  -webkit-box-shadow: 0 0 3px 1px rgba(163,163,163,0.30);
+  font-family: Montserrat;
+  font-weight: 300;
+}
+.incidents > .incident_item {
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+.incidents > .incident_item:last-child {
+  margin-bottom: 10px;
+}
+.incidents {
+  margin-bottom: 30px;
+}
+</style>>
