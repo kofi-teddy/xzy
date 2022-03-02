@@ -12,8 +12,16 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
+
     name: 'Incident',
+    filters: {
+        timeAgo (value) {
+            return moment.utc(value).fromNow()
+        }
+    },
     props: {
         incident: {
         type: Object,
