@@ -70,5 +70,43 @@ export default {
 </script>
 
 <style>
-
+.calendar h2 {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.green-color { color: #2EE779; }
+.orange-color { color: #f3b34c; }
+.subtext {
+  color: lightgrey;
+  display: inline-block;
+  position: relative;
+  left: 10px;
+}
+a, a:hover, a:visited, a:focus {
+  color: #7d7d7d;
+}
+.issue-resolved {
+  display: block;
+  font-size: 12px;
+  color: #a2a2a2;
+}
+.fa-exclamation-circle {
+  vertical-align: top;
+  top: 2px;
+  position: relative;
+}
+.calendar-item {
+  margin-bottom: 10px;
+}
+.calendar-item p{
+  margin-bottom: 5px;
+}
+.small-square-indicator {
+  width: 100%;
+  height: 5px;
+  display: inline-block;
+}
+.issue-name {
+  color: #7d7d7d;
+}
 </style>
