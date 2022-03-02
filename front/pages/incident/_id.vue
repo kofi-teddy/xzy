@@ -38,5 +38,26 @@ export default {
 </script>
 
 <style>
-
+.cards {
+  max-width: 700px;
+  margin: -30px auto 20px;
+}
+.card {
+  border-radius: 10px;
+  background-color: white;
+  padding: 15px 20px;
+  box-shadow: 0 0 3px 1px rgba(163,163,163,0.30);
+  -webkit-box-shadow: 0 0 3px 1px rgba(163,163,163,0.30);
+  font-family: Montserrat;
+  font-weight: 300;
+}
+.half {
+  color: #999999;
+}
+.right {
+  float: right;
+}
+h2 {
+  margin-bottom: 10px;
+}
 </style>
