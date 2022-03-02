@@ -35,9 +35,10 @@ import moment from 'moment'
 
 export default {
     name: 'HistoryPart',
-    data: (
-        dates = [],
-        closedIncidents = [
+
+    data: () => ({
+        dates: [],
+        closedIncidents: [
             { 
                 id: 1, 
                 title: 'Slow response times', 
@@ -48,7 +49,8 @@ export default {
                 ] 
             }
         ]
-    ),
+    }),
+
     methods: {
         getIncidents (i) {
             return this.closedIncidents.filter(a => moment(moment(a.start).startOf('day')).isSame(moment(i).startOf('day')))
