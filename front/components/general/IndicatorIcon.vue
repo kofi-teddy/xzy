@@ -37,5 +37,18 @@ export default {
 </script>
 
 <style>
-
+.indicator {
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  display: inline-block;
+}
+p {
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  margin-left: 5px;
+  font-size: 14px;
+  color: #464646;
+}
 </style>
