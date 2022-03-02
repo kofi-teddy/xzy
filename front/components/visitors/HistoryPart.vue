@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
     name: 'HistoryPart',
     data: (
@@ -47,6 +49,11 @@ export default {
             }
         ]
     ),
+    methods: {
+        getIncidents (i) {
+            return this.closedIncidents.filter(a => moment(moment(a.start).startOf('day')).isSame(moment(i).startOf('day')))
+        }
+    },
     mounted(){
         const start = new Date()
         for (let i = 0; i < 6; i++) {
@@ -54,7 +61,11 @@ export default {
             start.setDate(start.getDate() - 1)
         }
     },
-
+    filters: {
+        dateFormat (value) {
+            return moment.utc(value).format('ll')
+        }
+    }
 }
 </script>
 
