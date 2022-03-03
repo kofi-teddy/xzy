@@ -3,7 +3,7 @@
     <h2>{{ incident.title }}</h2>
     <p>{{ lastUpdate.description }}</p>
     <div class="sub">
-      {{ lastUpdate.date }}
+      {{ lastUpdate.date | timeAgo }}
       <span class="right">
         Status: {{ lastUpdate.status }}
       </span>
@@ -12,16 +12,18 @@
 </template>
 
 <script>
-import moment from 'moment'
+var timeFormatter = {
+  filters: {
+    timeAgo(value) {
+      return moment.utc(value).fromNow();
+    },
+  },
+};
+
 
 export default {
-
     name: 'Incident',
-    filters: {
-        timeAgo (value) {
-            return moment.utc(value).fromNow()
-        }
-    },
+    mixins: [timeFormatter],
     props: {
         incident: {
         type: Object,

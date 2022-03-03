@@ -1,9 +1,10 @@
 import moment from "moment";
 
-export const timeFormatter = {
+export var timeFormatter = {
   filters: {
     timeAgo(value) {
       return moment.utc(value).fromNow();
     },
   },
 };
+
