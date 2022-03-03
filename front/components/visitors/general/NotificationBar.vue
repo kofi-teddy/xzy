@@ -1,5 +1,12 @@
 <template>
+
   <div>
+    <transition-group
+        tag="div"
+        enter-active-class="animated slideInTop"
+        mode="out-in"
+        leave-active-class="animated slideOutBottom"
+      >
         <div
             v-for="i in notificationErrors"
             :key="i.id"
@@ -7,6 +14,7 @@
             >
             {{i.text}}
         </div>
+      </transition-group>
   </div>
 </template>
 
@@ -26,6 +34,36 @@ export default {
   position: relative;
   text-align: center;
   color: white;
+}
+
+.animated {
+  -webkit-animation-duration:0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  z-index: 4;
+}
+@keyframes slideInTop {
+  from {
+    margin-top: -41px;
+  }
+  to {
+    margin-top: 0px;
+  }
+}
+@keyframes slideOutBottom {
+  from {
+    margin-top: 0px;
+  }
+  to {
+    margin-top: -41px;
+  }
+}
+.slideInTop {
+  animation-name: slideInTop;
+}
+.slideOutBottom {
+  animation-name: slideOutBottom;
 }
 
 </style>
