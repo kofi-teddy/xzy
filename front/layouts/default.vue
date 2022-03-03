@@ -2,7 +2,13 @@
   <div>
     <TheHeader />
     <NotificationBar />
-    <nuxt />
+    <transition
+      enter-active-class="animated slideInLeft"
+      mode="out-in"
+      leave-active-class="animated slideOutRight"
+      >
+      <nuxt />
+    </transition>
     <TheFooter />
   </div>
 </template>
@@ -69,5 +75,39 @@ a, a:focus, a:visited, a:hover {
 }
 .incidents {
   margin-bottom: 30px;
+}
+.animated {
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-1%, 0, 0);
+    opacity: 0;
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(1%, 0, 0);
+  }
+}
+.slideOutRight {
+  animation-name: slideOutRight;
+}
+.slideInLeft {
+  animation-name: slideInLeft;
 }
 </style>
