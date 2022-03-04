@@ -11,3 +11,13 @@ services:
     volumes:
       - ./front:/app
     command: bash -c "cd /app && npm run dev"
+  
+  web:
+    container_name: incident_web
+    restart: on-failure
+    build: ./back
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./back:/app
+    command: python manage.py runserver 0.0.0.0:8000
