@@ -16,3 +16,16 @@ class Incident(models.Model):
         return self.title
 
 
+class Site(models.Model):
+    '''
+    At last, a Site should also be linked to multiple Uptime events.
+    We want to know every minute if our site is up or not, and we will store that with Uptime records.
+    '''
+    title = models.CharField(max_length=255)
+    url = models.URLField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
