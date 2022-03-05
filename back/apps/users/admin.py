@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
-from users.models import User
+from apps.users.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
-class UserAdmin(auth_admin.AdminAdmin):
+class UserAdmin(auth_admin.UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
     )
