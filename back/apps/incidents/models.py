@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -47,5 +48,22 @@ class Uptime(models.Model):
         return str(self.response_time)
 
 
+UPDATE_STATUS_CHOICES = (
+    ('identified', 'Identified'),
+    ('investigating', 'Investigating'),
+    ('monitoring', 'Monitoring'),
+    ('resolved', 'Resolved')
+)
+
+
+class Update(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, default=None)
+    incident = models.ForeignKey(Incident, on_delete=models.CASCADE, null=True, default=None)
+    description = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=UPDATE_STATUS_CHOICES)
+
+    def __str__(self):
+        return f'{self.incident.title} - {self.description:20}'
 
 
