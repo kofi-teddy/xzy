@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     
     # Custom apps 
     'apps.users',
+    'apps.incidents',
 ]
 
 MIDDLEWARE = [
