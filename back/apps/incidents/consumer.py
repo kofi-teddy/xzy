@@ -8,3 +8,9 @@ class UpdateConsumer(AsyncWebSocketConsumer):
             self.channel_name
         )
         await self.accept()
+    
+    async def disconnect(self, close_code):
+        await self.channel_layer.group_discard(
+            'All',
+            self.channel_name
+        )
