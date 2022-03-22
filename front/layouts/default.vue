@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TheHeader />
     <NotificationBar />
+    <TheHeader />
     <transition
       enter-active-class="animated slideInLeft"
       mode="out-in"
