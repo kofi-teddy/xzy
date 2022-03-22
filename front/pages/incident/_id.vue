@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 
 var timeFormatter = {
   filters: {
