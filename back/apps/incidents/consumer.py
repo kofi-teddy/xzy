@@ -1,3 +1,4 @@
+import json
 from channels.generic.websocket import AsyncWebSocketConsumer
 
 
@@ -14,3 +15,9 @@ class UpdateConsumer(AsyncWebSocketConsumer):
             'All',
             self.channel_name
         )
+
+    async def chat_message(self, event):
+        message = event['message']
+        await self.send(text_data=json.dumps({
+            'message': message
+        }))
