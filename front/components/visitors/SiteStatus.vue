@@ -1,17 +1,20 @@
 <template>
   <div>
-      <IndicatorIcon 
-        class="rightfloat" 
-        :status="site.status" 
-        :text="false" 
-        />
-     <div 
-        v-for="j in site.uptime_set" 
-        :key="j.id"
-        class="uptime"
-        >
-        <div :class="'small-square-indicator ' + j.status"></div>
-     </div>
+    <div class="inner">
+        <h2>{{ site.title }}</h2>
+        <IndicatorIcon 
+          class="rightfloat" 
+          :status="site.status" 
+          :text="false" 
+          />
+      <div 
+          v-for="j in site.uptime_set" 
+          :key="j.id"
+          class="uptime"
+          >
+          <div :class="'small-square-indicator ' + j.status"></div>
+      </div>
+    </div>
   </div>
 </template>
 
