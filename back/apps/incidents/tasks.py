@@ -2,6 +2,8 @@ from celery import shared_task
 import requests
 from datetime import datetime 
 from request.exceptions import ConnectionError, Timeout
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 from incidents.models import Site, Uptime
 
@@ -29,6 +31,11 @@ for site in sites:
             response_time=0, 
             date=datetime.now()
             )
+
+channel_layer = get_channel_layer()
+async_to_sync(channel_layer.group_send)(
+    'All', {'type': 'chat_message', 'message': data}
+)
 
 
 @shared_task
