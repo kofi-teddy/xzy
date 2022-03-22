@@ -1,12 +1,10 @@
 <template>
   <div>
-      <div>
     <h2>History</h2>
     <div
         v-for="(i, index) in dates"
         :key="index"
-        class="calendar-item"
-    >
+        class="calendar-item">
         <p>{{ i.toDateString() }}</p>
         <div v-if="getIncidents(i).length == 0">
         <font-awesome-icon icon="check-circle" class="green-color" />
@@ -15,17 +13,16 @@
         </div>
         </div>
         <div v-for="j in getIncidents(i)" :key="j.id">
-        <font-awesome-icon icon="exclamation-circle" class="orange-color" />
-        <div class="subtext issue-name">
-            <nuxt-link :to="{ name: 'incident-id', params: { id: j.id }}">
-            {{ j.title }}
-            </nuxt-link>
-            <div class="issue-resolved">
-            Resolved on: {{ j.end | dateFormat }}
-            </div>
+         <font-awesome-icon icon="exclamation-circle" class="orange-color" />
+          <div class="subtext issue-name">
+              <nuxt-link :to="{ name: 'incident-id', params: { id: j.id }}">
+              {{ j.title }}
+              </nuxt-link>
+              <div class="issue-resolved">
+                Resolved on: {{ j.end | dateFormat }}
+              </div>
+          </div>
         </div>
-        </div>
-    </div>
     </div>
   </div>
 </template>
