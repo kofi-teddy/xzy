@@ -46,17 +46,17 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELD = []
-
-    def has_module_perms(self, app_label):
-        return f'{self.first_name}, {self.last_name}'
+    
+    object = CustomUserManager()
+    
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
 
     def has_module_perms(self, app_label):
         return self.is_superuser
 
     def has_perm(self, perm, obj=None):
         return self.is_superuser
-    
-    object = CustomUserManager()
 
 def save(self, *args, **kwargs):
     self.email = self.email.lower()
