@@ -1,4 +1,10 @@
-export const state = () => ({});
+export const state = () => ({
+    socket: {
+        isConnected: true,
+        message: '',
+        reconnectError: false
+    }
+});
 
 export const mutations = {
     SOCKET_ONOPEN(state, event) {
