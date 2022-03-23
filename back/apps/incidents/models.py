@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from datetime import datetime, timedelta
 
 
 class Site(models.Model):
@@ -16,6 +17,11 @@ class Site(models.Model):
 
     def last_30_uptime_items(self):
         return self.uptime_set.all().order_by('-date')[:30]
+    
+    def last_7_days_incident_items(self):
+        date_today = datetime.now().replace(hour=0, minute=0, second=0) + timedelta(days=1)
+        date_seven_days_ago = date_today - timedelta(days=7)
+        return self.incident_set.all().filter(start__range=(date_seven_days_ago, date_today))
 
 
 class Incident(models.Model):
