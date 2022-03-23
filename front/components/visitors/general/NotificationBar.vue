@@ -8,7 +8,7 @@
         leave-active-class="animated slideOutBottom"
       >
         <div
-            v-for="i in notificationErrors"
+            v-for="i in $store.state.notificationErrors"
             :key="i.id"
             :class="'full-background ' + i.color"
             >
