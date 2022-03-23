@@ -1,15 +1,13 @@
-from celery import shared_task
+from datetime import datetime
+
 import requests
-from datetime import datetime 
-from request.exceptions import ConnectionError, Timeout
-from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
+from celery import shared_task
+from channels.layers import get_channel_layer
+from request.exceptions import ConnectionError, Timeout
 
 from incidents.models import Site, Uptime
-
-
-
-
+from incidents.serializers import SiteSerializer
 
 
 @shared_task
@@ -39,11 +37,13 @@ def update_to_visitor():
                 response_time=0, 
                 date=datetime.now()
                 )
+    
+    serializer = SiteSerializer(site)
 
     # send messages to groups
     channel_layer = get_channel_layer()
     async_to_sync(channel_layer.group_send)(
-        'All', {'type': 'chat_message', 'message': data}
+        'All', {'type': 'chat_message', 'message': serializer.data}
     )
 
 
