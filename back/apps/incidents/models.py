@@ -14,6 +14,9 @@ class Site(models.Model):
     def __str__(self):
         return self.title
 
+    def last_30_uptime_items(self):
+        return self.uptime_set.all().order_by('-date')[:30]
+
 
 class Incident(models.Model):
     '''
