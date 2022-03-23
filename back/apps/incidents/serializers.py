@@ -15,3 +15,11 @@ class UpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Update
         fields = ('id', 'description', 'status', 'date')
+
+
+class IncidentSerializer(serializers.ModelSerializer):
+    update_set = UpdateSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Incident
+        fields = ('id', 'title', 'update_set', 'start', 'end', 'solved')
