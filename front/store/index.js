@@ -3,7 +3,8 @@ export const state = () => ({
         isConnected: true,
         message: '',
         reconnectError: false
-    }
+    },
+    notificationError: []
 });
 
 export const mutations = {
@@ -27,6 +28,13 @@ export const mutations = {
     SOCKET_RECONNECT_ERROR (state) {
         console.log('we are back up and sailing guys! Nothing to worry about.')
         state.socket.reconnectionError = true
+    },
+    addNotificationError (state, error) {
+        error.id = btoa(Math.random()).substr(5, 5)
+        state.notificationErrors.push(error)
+    },
+    removeNotificationError (state, error) {
+        state.noticationErrors = state.noticationErrors.filter(a => a.id !== error.id)
     }
 };
 
