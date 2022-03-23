@@ -29,6 +29,9 @@ export const mutations = {
         const data = JSON.parse(message.data).message
         const i = state.sites.findIndex(o => o.id === data.id)
         state.sites[i] ? state.sites.splice(i, 1, data) : state.sites.push(data)
+
+        const result = state.sites.map(a => a.incident_set)
+        state.incidents = [].concat.apply([], result)
     },
     SOCKET_RECONNECT (state, message) {
         state.socket.message = message
