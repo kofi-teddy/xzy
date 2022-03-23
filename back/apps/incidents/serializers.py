@@ -11,11 +11,10 @@ class UpdateSerializer(serializers.ModelSerializer):
         fields = ('id', 'description', 'status', 'date')
 
 class UptimeSerializer(serializers.ModelSerializer):
-    status = serializers.CharField(source='get_status_display')
 
     class Meta:
         model = Update
-        fields = '__all__'
+        fields = ('id', 'date', 'response_time', 'status')
 
 
 class IncidentSerializer(serializers.ModelSerializer):
