@@ -4,6 +4,8 @@ export const state = () => ({
         message: '',
         reconnectError: false
     },
+    sites: [],
+    incident: [],
     notificationError: []
 });
 
@@ -23,6 +25,10 @@ export const mutations = {
     },
     SOCKET_ONMESSAGE (state, message) {
         state.socket.message = message
+
+        const data = JSON.parse(message.data).message
+        const i = state.sites.findIndex(o => o.id === data.id)
+        state.sites[i] ? state.sites.splice(i, 1, data) : state.sites.push(data)
     },
     SOCKET_RECONNECT (state, message) {
         state.socket.message = message
