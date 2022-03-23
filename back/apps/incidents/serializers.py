@@ -27,7 +27,7 @@ class IncidentSerializer(serializers.ModelSerializer):
 
 class SiteSerializer(serializers.ModelSerilizer):
     uptime_set = UptimeSerializer(many=True, read_only=True, source='last_30_uptime_items')
-    incident_set = IncidentSerializer(many=True, read_only=True)
+    incident_set = IncidentSerializer(many=True, read_only=True, source='last_7_days_incident_items')
     
     class Meta:
         model = Site
