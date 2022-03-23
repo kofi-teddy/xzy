@@ -46,6 +46,11 @@ export default {
     // sites: [{ title: 'API', status: 'up', uptime_set: [{ date: '2022-02-2T13:42:58.085870', id: 1, response_time: 352, status: 'up' }, { date: '2022-03-2T13:43:58.085870', id: 2, response_time: 231, status: 'up' }, { date: '2022-03-2T13:44:58.085870', id: 3, response_time: 123, status: 'down' }, { date: '2022-03-2T13:45:58.085870', id: 4, response_time: 344, status: 'issue' }] }]
     sites: $store.state.sites
   }),
+  computed: {
+    openIncidents () {
+      return this.$store.state.incidents.filter(a => !a.solved)
+    }
+  }
 }
 </script>
 
