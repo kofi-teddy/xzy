@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from incidents.models import Site, Uptime, Incident, Update
+
+
+admin.site.register(Site)
+admin.site.register(Uptime)
+admin.site.register(Incident)
+admin.site.register(Update)
