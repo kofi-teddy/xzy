@@ -11,6 +11,7 @@ export const mutations = {
     SOCKET_ONOPEN(state, event) {
         console.log('What can I do for you?')
         state.socket.isConnected = true
+        state.noticationErrors.push({ color: 'green', id: 0, text: 'We are connected now! This works great!', time: 0})
     },
     SOCKET_ONCLOSE(state, event) {
         console.log('Oh dang I cant reach you anymore!')
