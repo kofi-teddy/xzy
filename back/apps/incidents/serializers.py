@@ -10,6 +10,13 @@ class UpdateSerializer(serializers.ModelSerializer):
         model = Update
         fields = ('id', 'description', 'status', 'date')
 
+class UptimeSerializer(serializers.ModelSerializer):
+    status = serializers.CharField(source='get_status_display')
+
+    class Meta:
+        model = Update
+        fields = '__all__'
+
 
 class IncidentSerializer(serializers.ModelSerializer):
     update_set = UpdateSerializer(many=True, read_only=True)
