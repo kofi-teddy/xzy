@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from incidents.models import Site, Uptime, Incident, Update
+from apps.incidents.models import Site, Uptime, Incident, Update
 
 
 admin.site.register(Site)
