@@ -38,4 +38,13 @@ export const mutations = {
     }
 };
 
-export const actions = {};
+export const actions = {
+    showNotificationErrors ({ commit }, error) {
+        commit('addNotificationError', error)
+        if (error.time) {
+            setTimeout(() => {
+                commit('removeNotificationError', error)
+            }, error.time)
+        }
+    }
+};
