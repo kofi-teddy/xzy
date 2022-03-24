@@ -53,5 +53,9 @@ def update_to_visitor():
         emails = [x.email for x in User.objects.all() if x.email_for_issues]
         email = EmailMessage('We just had a time out', 'Please check our website, we might have issues. https://kofiteddy.com', 
             settings.DEFAULT_FROM_EMAIL, [User.objects.first().email], [emails], fail_silently=True)
-
         email.send()
+
+    if not Uptime.objects.filter(status='down', site=site, date__gte=datetime.now() - timedelta(minutes=10)).exists():
+        emails = [x.email for x in User.objects.all() if x.send_email_for_downtime]
+        email = EmailMessage('A site has issues.', 'Please check our website, we might have some serious problems. https://kofiteddy.com', 
+            settings.DEFAULT_FROM_EMAIL, [User.objects.first().email], [emails], fail_silently=True)
