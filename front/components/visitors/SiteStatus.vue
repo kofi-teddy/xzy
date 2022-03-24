@@ -4,7 +4,7 @@
         <h2>{{ site.title }}</h2>
         <IndicatorIcon 
           class="rightfloat" 
-          :status="site.status" 
+          :status="status" 
           :text="false" 
           />
       <div 
