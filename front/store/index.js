@@ -19,6 +19,10 @@ export const mutations = {
         console.log('Oh dang I cant reach you anymore!')
         state.socket.isConnected = true
         state.noticationErrors = state.notificationErrors.filter(a => a.id !== 0)
+
+        if (state.noticationErrors.find(a => a.id === 0) === undefinded) {
+            state.notificationsErrors.push({ color: 'red', id: 0, text: 'We lost connection to the server. Please refresh the page or wait for a bit.', time: 0})
+        }
     },
     SOCKET_ONERROR(state, event) {
         console.error(state, event)
