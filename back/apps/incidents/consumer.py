@@ -1,5 +1,11 @@
 import json
+
+from asgiref.sync import async_to_sync
+from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncWebSocketConsumer
+
+from apps.incidents.models import Site
+from apps.incidents.serializers import SiteSerializer
 
 
 class UpdateConsumer(AsyncWebSocketConsumer):
@@ -21,3 +27,14 @@ class UpdateConsumer(AsyncWebSocketConsumer):
         await self.send(text_data=json.dumps({
             'message': message
         }))
+
+    @database_sync_to_async
+    def send_sites(self):
+        sites = sites.objects.all()
+        for site in sites:
+            serializer = SiteSerializer(site)
+            async_to_sync(self.chat_message)(
+                {'type': 'chat_message', 'message': serializer.data }
+            )
+    
+
