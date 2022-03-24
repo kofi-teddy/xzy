@@ -1,10 +1,13 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import requests
 from asgiref.sync import async_to_sync
 from celery import shared_task
 from channels.layers import get_channel_layer
+from django.conf import settings
+from django.core.mail import EmailMessage
 from request.exceptions import ConnectionError, Timeout
+from users.models import User
 
 from incidents.models import Site, Uptime
 from incidents.serializers import SiteSerializer
@@ -46,4 +49,9 @@ def update_to_visitor():
         'All', {'type': 'chat_message', 'message': serializer.data}
     )
 
+    if not Uptime.objects.filter(status='issue', site=site, date__qte=datetime.now() - timedelta(minutes=10)).exist():
+        emails = [x.email for x in User.objects.all() if x.email_for_issues]
+        email = EmailMessage('We just had a time out', 'Please check our website, we might have issues. https://kofiteddy.com', 
+            settings.DEFAULT_FROM_EMAIL, [User.objects.first().email], [emails], fail_silently=True)
 
+        email.send()
