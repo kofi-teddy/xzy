@@ -78,7 +78,7 @@ class Update(models.Model):
 
 
 class Subscriber(models.Model):
-    id = models.UUIDField(primar_key=True, default=uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     email = models.EmailField(unique=True)
 
     def __str__(self):
