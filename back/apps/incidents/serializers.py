@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from incidents.models import Incident, Site, Update, Uptime
+from incidents.models import Incident, Site, Update, Uptime, Subscriber
 
 
 class UpdateSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class UpdateSerializer(serializers.ModelSerializer):
 class UptimeSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Update
+        model = Uptime
         fields = ('id', 'date', 'response_time', 'status')
 
 
@@ -32,3 +32,14 @@ class SiteSerializer(serializers.ModelSerilizer):
     class Meta:
         model = Site
         fields = ('id', 'title', 'url', 'date')
+
+
+class SubscriberSerializer(serializers.ModelSerializer):
+    def validate_email(self, value):
+        if Subscriber.objects.filter(email=value.lower()).exists():
+            raise serializers.ValidationError('subscriber with this email already exists.')
+        return value.lower()
+
+    class Meta:
+        model = Subscriber
+        fields = ('email',)
