@@ -18,7 +18,7 @@
           class="subscribe"
         >
           Sign up to be notified of updates
-          <form class="form">
+          <form class="form" @submit.prevent="sendEmail">
             <input
               v-model="email"
               type="text"
@@ -46,6 +46,8 @@
 <script>
 import IndicatorIcon from '@/components/visitors/general/IndicatorIcon.vue'
 
+baseURL: 'http://0.0.0.0:8000/'
+
 export default {
     name: 'TheHeader',
     components: { IndicatorIcon },
@@ -61,6 +63,25 @@ export default {
             return 'up'
           }
         }
+    },
+    methods: {
+      sendEmail () {
+        this.$axios.post('api/subscribe', { email: this.email }).then((response) => {
+          this.$store.dispatch('showNotificationErrors', {
+            color: 'green',
+            text: 'Cool! We will notify you of incidents!',
+            time: 2000
+          })
+          this.email = ''
+          this.showForm = !this.showForm
+        }).catch((error) => {
+          this.$store.dispatch('showNotificationErrors', {
+            color: 'red',
+            text: error.response.data['email'][0],
+            time: 2000
+          })
+        })
+      }
     }
 }
 </script>
