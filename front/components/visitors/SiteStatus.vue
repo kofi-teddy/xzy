@@ -29,6 +29,11 @@ export default {
       type: Object,
       default: () => { return {} }
     }
+  },
+  computed: {
+    closedIncidents () {
+      return this.$store.state.incidents.filter(a => a.solved)
+    }
   }
 }
 </script>
