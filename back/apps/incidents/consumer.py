@@ -15,6 +15,7 @@ class UpdateConsumer(AsyncWebSocketConsumer):
             self.channel_name
         )
         await self.accept()
+        await self.send_sites()
     
     async def disconnect(self, close_code):
         await self.channel_layer.group_discard(
@@ -36,6 +37,6 @@ class UpdateConsumer(AsyncWebSocketConsumer):
             async_to_sync(self.chat_message)(
                 {'type': 'chat_message', 'message': serializer.data }
             )
-        await self.send_sites()
+        
     
 
