@@ -35,17 +35,7 @@ export default {
 
     data: () => ({
         dates: [],
-        closedIncidents: [
-            { 
-                id: 1, 
-                title: 'Slow response times', 
-                end: '2022-03-2 13:00:12', 
-                start: '2022-03-1 13:00:12', 
-                update_set: [
-                    { description: 'We have noticed some connectivity issues', date: '20103-8-1 13:00:12', status: 'Investigating' }
-                ] 
-            }
-        ]
+        closedIncidents: []
     }),
 
     methods: {
@@ -64,6 +54,11 @@ export default {
         dateFormat (value) {
             return moment.utc(value).format('ll')
         }
+    },
+    computed: {
+      closeIncidents () {
+        return this.$store.state.incidents.filter(a => a.solved)
+      }
     }
 }
 </script>
