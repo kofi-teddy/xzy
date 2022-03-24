@@ -46,6 +46,11 @@ export default {
     mounted () {
         this.incident = this.incidents.find(a => a.id === parseInt(this.$route.params.id))
     },
+    computed: {
+      incident () {
+        return this.$store.state.incidents.find(a => a.id === parseInt(this.$route.params.id))
+      }
+    },
 }
 </script>
 
