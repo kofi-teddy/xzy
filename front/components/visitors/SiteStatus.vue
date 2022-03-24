@@ -31,8 +31,8 @@ export default {
     }
   },
   computed: {
-    closedIncidents () {
-      return this.$store.state.incidents.filter(a => a.solved)
+    status () {
+      return this.site.uptime_set[this.site.uptime_set.length - 1].status
     }
   }
 }
