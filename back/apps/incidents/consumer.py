@@ -36,5 +36,6 @@ class UpdateConsumer(AsyncWebSocketConsumer):
             async_to_sync(self.chat_message)(
                 {'type': 'chat_message', 'message': serializer.data }
             )
+        await self.send_sites()
     
 
