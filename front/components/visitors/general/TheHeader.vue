@@ -55,7 +55,11 @@ export default {
     }),
     computed: {
         status () {
-        return 'down'
+          if (this.$store.sites.find(a => a.status === 'down') !== undefined) {
+            return 'issue'
+          } else {
+            return 'up'
+          }
         }
     }
 }
