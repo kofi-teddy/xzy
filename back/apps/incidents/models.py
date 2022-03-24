@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from datetime import datetime, timedelta
 
+from uuid import uuid4
 
 class Site(models.Model):
     '''
@@ -76,3 +77,9 @@ class Update(models.Model):
         return f'{self.incident.title} - {self.description:20}'
 
 
+class Subscriber(models.Model):
+    id = models.UUIDField(primar_key=True, default=uuid4, editable=False)
+    email = models.EmailField(unique=True)
+
+    def __str__(self):
+        return self.email
