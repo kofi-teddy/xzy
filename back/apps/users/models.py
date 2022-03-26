@@ -56,8 +56,8 @@ class User(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         return self.is_superuser
 
-def save(self, *args, **kwargs):
-    self.email = self.email.lower()
-    return super(User, self).save(*args, **kwargs) 
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower()
+        return super(User, self).save(*args, **kwargs) 
 
 
