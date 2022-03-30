@@ -30,7 +30,7 @@ INSTALLED_APPS = [
 
     # Third party apps
     'rest_framework',
-    'corsheader',
+    'corsheaders',
     
     # Custom apps 
     'apps.users',

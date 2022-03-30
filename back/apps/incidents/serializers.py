@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from incidents.models import Incident, Site, Update, Uptime, Subscriber
-
+from apps.incidents.models import Incident, Site, Update, Uptime, Subscriber
 
 class UpdateSerializer(serializers.ModelSerializer):
     status = serializers.CharField(source='get_status_display')
@@ -25,7 +24,7 @@ class IncidentSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'update_set', 'start', 'end', 'solved')
 
 
-class SiteSerializer(serializers.ModelSerilizer):
+class SiteSerializer(serializers.ModelSerializer):
     uptime_set = UptimeSerializer(many=True, read_only=True, source='last_30_uptime_items')
     incident_set = IncidentSerializer(many=True, read_only=True, source='last_7_days_incident_items')
     
